@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Play", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #222831;
+}
+.board {
+    display: flex;
+    gap: 20px;
+}
+
+.column {
+    background-color: #393e46;
+    width: 300px;
+    min-height: 400px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.column h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.tasks {
+    min-height: 400px;
+}
+
+.task-input {
+    width: 100%;
+    padding: 10px 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+.add-task {
+    width: 100%;
+    padding: 10px 5px;
+    border: none;
+    background-color: #d89216;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+}
+
+.add-task:hover {
+    background-color: #aa7a27;
+}
+
+.card {
+    background-color: #e1d89f;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    color: #000000;
+    cursor: grab;
+    transition: all 0.3s ease;
+}
+
+.car:hover {
+    transform: scale(1.05);
+}
