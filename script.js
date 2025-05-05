@@ -112,3 +112,13 @@ function updateLocalStorage() {
         localStorage.setItem(columnId, JSON.stringify(tasks));
     });
 } 
+
+// Attach event listeners to all input fields
+document.querySelectorAll('.task-input').forEach((input) => {
+    input.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            const columnId = this.id.replace('-input', '');
+            addTask(columnId);
+        }
+    });
+});
