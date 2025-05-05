@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -11,90 +12,130 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #222831;
+    color: #a0fca0;
+    background-image: url('https://media.tenor.com/IvyuPtEfzhoAAAAM/matrix.gif'); /* working Matrix GIF */
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
 }
+
+
 .board {
     display: flex;
     gap: 20px;
+    padding: 20px;
 }
 
 .column {
-    background-color: #393e46;
+    background-color: rgba(0, 0, 0, 0.85); /* semi-transparent black */
     width: 300px;
     min-height: 400px;
     padding: 20px;
     border-radius: 10px;
+    border: 1px solid #48b548;
+    box-shadow: 0 0 8px rgba(72, 181, 72, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .column h2 {
     text-align: center;
-    color: #fff;
-    margin-bottom: 20px;
+    color: #a0fca0;
+    margin-bottom: 10px;
+    font-size: 20px;
+    border-bottom: 1px solid #48b548;
+    padding-bottom: 6px;
 }
 
 .tasks {
-    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+    min-height: 100px;
 }
 
 .task-input {
     width: 100%;
     padding: 10px 5px;
     border-radius: 4px;
-    border: 1px solid #ccc;
+    border: 1px solid #48b548;
+    background-color: #000;
+    color: #a0fca0;
+    font-family: inherit;
     margin-top: 10px;
+}
+
+.task-input::placeholder {
+    color: #7fdd7f;
+    opacity: 0.6;
 }
 
 .add-task {
     width: 100%;
     padding: 10px 5px;
     border: none;
-    background-color: #d89216;
+    background-color: #48b548;
     margin-top: 10px;
     transition: all 0.3s ease;
     font-weight: bold;
     cursor: pointer;
-    color: #fff;
+    color: #000;
+    border-radius: 4px;
+    font-family: inherit;
 }
 
 .add-task:hover {
-    background-color: #aa7a27;
+    background-color: #2f8e2f;
+    color: #000;
 }
 
 .card {
-    background-color: #e1d89f;
-    position: relative;
+    background-color: rgba(0, 0, 0, 0.75);
+    border: 1px solid #48b548;
     padding: 10px;
+    font-weight: bold;
     margin-bottom: 10px;
     border-radius: 4px;
-    color: #000000;
+    color: #a0fca0;
     cursor: grab;
     transition: all 0.3s ease;
+    box-shadow: 0 0 4px rgba(72, 181, 72, 0.3);
 }
 
-.car:hover {
-    transform: scale(1.05);
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 6px #48b548;
 }
 
 .context-menu {
     display: none;
-    position: absolute ;
-    background-color: #fff;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
     padding: 10px 0;
     border-radius: 4px;
+    border: 1px solid #48b548;
+    box-shadow: 0 0 6px #48b548;
+    z-index: 999;
 }
 
 .context-menu ul li {
     list-style: none;
-    position: relative;
     padding: 8px 20px;
     cursor: pointer;
-    color: #333;
+    color: #a0fca0;
+}
+
+.context-menu ul li:hover {
+    background-color: #003300;
 }
 
 .time {
-    text-align: end;
-    display: block;
+    text-align: right;
     font-style: italic;
-    color: #000;
+    color: #7fdd7f;
     font-size: 12px;
+    opacity: 0.7;
 }
