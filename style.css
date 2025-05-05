@@ -62,6 +62,7 @@ body {
 
 .card {
     background-color: #e1d89f;
+    position: relative;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 4px;
@@ -72,4 +73,20 @@ body {
 
 .car:hover {
     transform: scale(1.05);
+}
+
+.context-menu {
+    display: none;
+    position: absolute ;
+    background-color: #fff;
+    padding: 10px 0;
+    border-radius: 4px;
+}
+
+.context-menu ul li {
+    list-style: none;
+    position: relative;
+    padding: 8px 20px;
+    cursor: pointer;
+    color: #333;
 }
