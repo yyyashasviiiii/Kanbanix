@@ -1,5 +1,7 @@
 let draggedCard = null;
 let rightClickedCard = null;
+document.addEventListener("DOMContentLoaded", loadTasksFromLocalStorage);
+
 function addTask(columnId) {
     const input = document.getElementById(`${columnId}-input`);
     const taskText = input.value.trim();
@@ -8,16 +10,18 @@ function addTask(columnId) {
         return;
     }
 
-    const taskElement = createTaskElement(taskText);
+    const taskDate = new Date().toLocaleString();
+    const taskElement = createTaskElement(taskText, taskDate);
 
     document.getElementById(`${columnId}-tasks`).appendChild(taskElement);
+    saveTasksToLocaleStorage(columnId, taskText, taskDate); 
 
     input.value = "";
 }
 
-function createTaskElement(taskText) {
+function createTaskElement(taskText, taskDate) {
     const element = document.createElement("div");
-    element.textContent = taskText;
+    element.innerHTML = `<span>${taskText}</span><br><small class="time">${taskDate}</small>`;
     element.classList.add("card");
     element.draggable = true;
     element.addEventListener("dragstart", dragStart);
@@ -38,6 +42,7 @@ function dragStart() {
 
 function dragEnd() {
     this.classList.remove("dragging");
+    updateLocalStorage();
 }
 
 const columns = document.querySelectorAll(".tasks");
@@ -67,6 +72,7 @@ function editTask() {
         const newTaskText = prompt("Edit task - ",rightClickedCard.textContent);
         if(newTaskText !== "") {
             rightClickedCard.textContent = newTaskText;
+            updateLocalStorage();
         }
     }
 }
@@ -74,5 +80,35 @@ function editTask() {
 function deleteTask() {
     if (rightClickedCard !== null) {
         rightClickedCard.remove();
+
+        updateLocalStorage();
     }
 }
+
+function saveTasksToLocaleStorage(columnId, taskText, taskDate) {
+    const tasks = JSON.parse(localStorage.getItem(columnId)) || [];
+    tasks.push({ text: taskText, date: taskDate});
+    localStorage.setItem(columnId, JSON.stringify(tasks));
+}
+
+function loadTasksFromLocalStorage() {
+    ["todo", "doing", "done"].forEach((columnId) => {
+        const tasks = JSON.parse(localStorage.getItem(columnId)) || [];
+        tasks.forEach(({text, date}) => {
+            const taskElement = createTaskElement(text, date);
+            document.getElementById(`${columnId}-tasks`).appendChild(taskElement);
+        });
+    })
+}
+
+function updateLocalStorage() {
+    ["todo", "doing", "done"].forEach((columnId) => {
+        const tasks = [];
+        document.querySelectorAll(`#${columnId}-tasks .card`).forEach((card) => {
+            const taskText = card.querySelector("span").textContent;
+            const taskDate = card.querySelector("small").textContent;
+            tasks.push({text: taskText, date: taskDate});
+        });
+        localStorage.setItem(columnId, JSON.stringify(tasks));
+    });
+} 
